@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: sunlin
+    password: 123456
+    url: jdbc:mysql://47.94.128.132:3306/basicAuthorization?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+  jpa:
+    show-sql: true
+    open-in-view: true
+  session:
+    store-type: none
+  redis:
+    namespace: validateCode
+    host: 47.94.128.132
+    port: 6379
+  resources:
+    static-locations: classpath:/resources/static,classpath:/resources
+
+server:
+  port: 8060
+security:
+  oauth:
+    tokenStore: redis
+
+
+#security:
+#  clients:
+#    clients[0]:
+#      clientId: txhl
+#      clientSecret: txhlSecret
+#      accessTokenValiditySeconds: 3600
+#    clients[1]:
+#      clientId: test
+com:
+  security:
+    browser:
+      login-type: JSON
+      signUp: /demo-signUp.html
+      loginOutUrl: /logout.html
+      sessionInvalidUrl: /session-invalid.html
+      staticAvoidPath: /static/**,/resources/**
+    code:
+      imgCode:
+        length: 4
+        width: 100
+        height: 45
+        url: /user,/user/*
+      smsCode:
+        length: 4
+        expireIn: 600
+        url: /auth/smsForm
+    social:
+      qq:
+        app-id: 101477439
+        app-secret: 1c9274f4c91af237a4055680a931cd71
+        providerId: callback
+      weixin:
+        app-id: wxd888ff7ebaff0fdb
+        app-secret: 771c5f039f324f38a1f18dcb744db897
+        providerId: weixin
+      filterProcessUrl: /qqLogin
+#      clientSecret: testOne
