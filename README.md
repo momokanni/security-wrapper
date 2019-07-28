@@ -23,17 +23,17 @@
 
 #### springSecurity默认的处理流程  
 
-![默认处理流程](https://github.com/momokanni/SecurityGroup/blob/master/img/process/%E9%BB%98%E8%AE%A4%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)  
+![默认处理流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%A1%A8%E5%8D%95%E9%BB%98%E8%AE%A4%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)  
 
 #### 认证流程(登录)
-![认证流程](https://github.com/momokanni/SecurityGroup/blob/master/img/process/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86(%E7%99%BB%E5%BD%95).svg)  
+![认证流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86(%E8%A1%A8%E5%8D%95%E7%99%BB%E5%BD%95).svg)  
 
 #### 记住我-登录成功处理流程  
 
-![记住我-登录成功处理流程](https://github.com/momokanni/SecurityGroup/blob/master/img/process/%E8%AE%B0%E4%BD%8F%E6%88%91-%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.svg)  
+![记住我-登录成功处理流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%AE%B0%E4%BD%8F%E6%88%91-%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.svg)  
 
 #### 记住我-自动登录  
 
-![记住我-自动登录](https://github.com/momokanni/SecurityGroup/blob/master/img/process/%E8%AE%B0%E4%BD%8F%E6%88%91-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95.svg) 
+![记住我-自动登录](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%AE%B0%E4%BD%8F%E6%88%91-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95.svg) 
 
 
