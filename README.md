@@ -24,7 +24,7 @@ demo : 样例服务，方便使用者更快熟悉该组件
 >1. 支持前后端分离  
 >2. springBoot2.0.8、SpringSecurity5.0.11、Spring5.0.12、lombok、junit4.12、logback、swagger 
 ### 后续更新  
-TODO: 基于该组件实现的单点登录的独立组件  
+TODO: 单点登录组件  
 TODO: 接口类防护  
 TODO: 文件上传安全防护  
 TODO: XSS、CSRF  
