@@ -19,7 +19,11 @@ demo : 样例服务，方便使用者更快熟悉该组件
             app -->  
   demo -->              core --> springSecurity  
             browser --> 
-```
+```  
+### 引用方式  
+>1. 开源引用，可直接在demo模块进行开发，也可创建子模块，可修改源代码  
+>2. maven引用  
+>3. 可直接运行做成服务，对外提供API  
 ### 技术栈  
 >1. 支持前后端分离  
 >2. springBoot2.0.8、SpringSecurity5.0.11、Spring5.0.12、lombok、junit4.12、logback、swagger 
@@ -30,6 +34,7 @@ TODO: 文件上传安全防护
 TODO: XSS、CSRF  
 TODO: websocket安全通信  
 TODO: 权限管理组件  
+TODO: 引入docker  
 这么看来，啥都没做🤣🤣🤣就是一个空壳子  
 
 ## SpringSecurity简介  
