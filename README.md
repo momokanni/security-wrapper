@@ -9,9 +9,11 @@ browser : PC web
 core : 核心包  
 demo : 样例服务，方便使用者更快熟悉该组件  
 ### 依赖关系  
+```
             app -->  
   demo -->              core --> springSecurity  
-            browser -->     
+            browser --> 
+```
 ### 技术栈  
 
 ### 关注点  
