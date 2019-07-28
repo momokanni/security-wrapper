@@ -5,10 +5,10 @@
 >2. 为了解决springSecurity上手难和使用配置繁杂(类似于Lucence和Elasticsearch的关系)  
 >3. 为了提升安全相关的开发效率，期望能做到使用者傻瓜式开发  
 
-###### 扯点远的: 基于springcloud多组件实现分布式开发的思路，期望能够通过提供: 基于多场景组件,提高单机或者分布式系统的开发效率。
+###### 扯点不靠谱的: 基于springcloud多组件实现分布式开发的思路，期望能够通过提供: 基于多常用场景组件,提高单机或者分布式系统的开发效率。
 ### 功能介绍  
-基于springSecurity并对其进行封装二次开发。  
-提供基于OAuth2的身份认证和访问授权、单点登录、文件上传、权限系统无障碍接入、三方登录、接口防刷、特殊接口隐藏、反爬虫、XSS、CSRF、SQL注入、websocket通信安全、Mock伪服务创建及管理、压力测试优化等一系列安全场景的解决方案  
+该组件完全基于springSecurity进行的二次开发。  
+提供基于OAuth2的身份认证和访问授权、单点登录、文件上传、权限系统无障碍接入、三方登录、接口防刷、特殊接口隐藏、反爬虫、XSS、CSRF、SQL注入、websocket通信安全、日志管理、Mock伪服务创建及管理、压力测试优化等一系列安全场景的解决方案  
 ### 代码结构  
 app : 移动端  
 browser : PC web  
@@ -21,8 +21,16 @@ demo : 样例服务，方便使用者更快熟悉该组件
             browser --> 
 ```
 ### 技术栈  
-
-### 关注点  
+>1. 支持前后端分离  
+>2. springBoot2.0.8、SpringSecurity5.0.11、Spring5.0.12、lombok、junit4.12、logback、swagger 
+### 后续更新  
+TODO: 基于该组件实现的单点登录的独立组件  
+TODO: 接口类防护  
+TODO: 文件上传安全防护  
+TODO: XSS、CSRF  
+TODO: websocket安全通信  
+TODO: 权限管理组件  
+这么看来，啥都没做🤣🤣🤣就是一个空壳子  
 
 ## SpringSecurity简介  
 
