@@ -7,6 +7,7 @@
 >4. [JSONView](https://www.jianshu.com/p/6ea9f2245f4d)  
 >5. [AdBlock屏蔽页面广告](https://getadblock.com/)  
 >6. [The Great Suspender](https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg?hl=zh-CN)  
+>7. [Octotree](https://zhuanlan.zhihu.com/p/20431851)  
 
 ### 编写初心  
 >1. 为了深入了解安全防护的知识  
