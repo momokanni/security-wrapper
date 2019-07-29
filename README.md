@@ -1,11 +1,12 @@
 ### 前情提要  
 在这首先感谢毅哥的支持，其中包括在架构和关键技术痛点的经验分享和提醒，弥补了我经验不足带来的缺失、以及给予充分自由的发挥空间。🥶🥶🥶🥶🥶#不是拍马屁#  
-### 先推荐两个好用的chrome插件  
+### 先推荐几个好用的chrome插件  
 >1. [Sourcegraph](https://zhuanlan.zhihu.com/p/27620085)  
 >2. [Clear Cache](https://chrome.google.com/webstore/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn?hl=zh-CN)：一键清理浏览器缓存  
 >3. [科学上网](http://googlehelper.net/)  
 >4. [JSONView](https://www.jianshu.com/p/6ea9f2245f4d)  
 >5. [AdBlock屏蔽页面广告](https://getadblock.com/)  
+>6. [The Great Suspender](https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg?hl=zh-CN)  
 
 ### 编写初心  
 >1. 为了深入了解安全防护的知识  
