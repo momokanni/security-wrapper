@@ -57,6 +57,9 @@ TODO: 引入docker
 
 ![默认表单登录处理流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%A1%A8%E5%8D%95%E9%BB%98%E8%AE%A4%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)  
 
+#### springSocial三方登录处理流程  
+![springSocial三方登录](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/social%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)  
+
 #### 认证流程(登录)
 ![认证流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86(%E8%A1%A8%E5%8D%95%E7%99%BB%E5%BD%95).svg)  
 
