@@ -51,17 +51,17 @@ TODO: 引入docker
    meet custom requirements
 ```  
 译：Spring Security是一个强大而且可高度自定义的认证和流程控制框架。也是一套保护spring基础应用的安全标准。  
-   Spring Security是一个聚焦于对Java应用程序提供认证和授权的框架，和其他spring项目一样，其强大之处在于能够很简单的进行自定义开发
+   Spring Security是一个聚焦于对Java应用程序提供认证和授权的框架，和其他spring项目一样，其强大之处在于能够很简单的进行自定义开发,dei 我们做的就是自定义开发。  
+   
+#### 统一的登录认证流程
+![认证流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86(%E8%A1%A8%E5%8D%95%E7%99%BB%E5%BD%95).svg)  
 
-#### springSecurity默认的表单登录处理流程  
+#### 表单登录处理流程  
 
 ![默认表单登录处理流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%A1%A8%E5%8D%95%E9%BB%98%E8%AE%A4%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)  
 
 #### springSocial三方登录处理流程  
 ![springSocial三方登录](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/springSocial%E7%A4%BE%E4%BA%A4%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)  
-
-#### 认证流程(登录)
-![认证流程](https://github.com/momokanni/doc-repository/blob/master/security-wrapper/img/process/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86(%E8%A1%A8%E5%8D%95%E7%99%BB%E5%BD%95).svg)  
 
 #### 记住我-登录成功处理流程  
 
