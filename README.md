@@ -44,7 +44,7 @@ TODO: 权限管理组件
 TODO: 引入docker  
 这么看来，啥都没做🤣🤣🤣就是一个空壳子  
 
-### 想要完全理解security的架构及编码思路需要看一下[《OAuth2实战》](https://github.com/momokanni/OAuth2)这本书  
+### 想要完全理解springSecurity的架构及编码思路需要看一下[《OAuth2实战》](https://github.com/momokanni/OAuth2)这本书  
 
 ## SpringSecurity简介  
 
