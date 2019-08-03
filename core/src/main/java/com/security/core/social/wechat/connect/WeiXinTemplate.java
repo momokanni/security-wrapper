@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.security.core.social.wechat.connect;
 
 import java.nio.charset.Charset;
@@ -21,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  *
  */
 @Slf4j
-public class WeixinTemplate extends OAuth2Template {
+public class WeiXinTemplate extends OAuth2Template {
 	
 	private String clientId;
 	
@@ -31,7 +28,7 @@ public class WeixinTemplate extends OAuth2Template {
 	
 	private static final String REFRESH_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/refresh_token";
 	
-	public WeixinTemplate(String clientId, String clientSecret, String authorizeUrl, String accessTokenUrl) {
+	public WeiXinTemplate(String clientId, String clientSecret, String authorizeUrl, String accessTokenUrl) {
 		super(clientId, clientSecret, authorizeUrl, accessTokenUrl);
 		//这个值为true时，OAuth2Template请求才会将client_id(appId)和client_secret(appSecret)这俩参数附带上
 		setUseParametersForClientAuthentication(true);
@@ -76,10 +73,10 @@ public class WeixinTemplate extends OAuth2Template {
 	 * @return
 	 */
 	private AccessGrant getAccessToken(StringBuilder tokenUrl) {
-		log.info("获取access_token, 请求URL: "+accessTokenUrl.toString());
+		log.info("获取access_token, 请求URL: {}" , accessTokenUrl.toString());
 		
 		String response = getRestTemplate().getForObject(tokenUrl.toString(), String.class);
-		log.info("获取access_token, 响应内容: "+response);
+		log.info("获取access_token, 响应内容: {}" , response);
 		
 		Map<String, Object> result = null;
 		try {
@@ -89,12 +86,12 @@ public class WeixinTemplate extends OAuth2Template {
 		}
 		
 		if(StringUtils.isNotBlank(MapUtils.getString(result, "errcode"))) {
-			String errcode = MapUtils.getString(result, "errcode");
-			String errmsg = MapUtils.getString(result, "errmsg");
-			throw new RuntimeException("获取access token失败, errcode:"+errcode+", errmsg:"+errmsg);
+			String errCode = MapUtils.getString(result, "errcode");
+			String errMsg = MapUtils.getString(result, "errmsg");
+			throw new RuntimeException("获取access token失败, errcode:" + errCode + ", errmsg:" + errMsg);
 		}
 		
-		WeixinAccessGrant wxGrant = new WeixinAccessGrant(
+		WeiXinAccessGrant wxGrant = new WeiXinAccessGrant(
 										MapUtils.getString(result, "access_token"),
 										MapUtils.getString(result, "scope"),
 										MapUtils.getString(result, "refresh_token"),

@@ -15,8 +15,10 @@ public class OAuth2ClientProperties {
 	private String clientId;
 	
 	private String clientSecret;
-	
-	//令牌有效期
+
+	/**
+	 * 令牌有效期
+	 */
 	private int accessTokenValiditySeconds;
 
 }

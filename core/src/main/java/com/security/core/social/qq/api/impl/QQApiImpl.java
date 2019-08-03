@@ -12,25 +12,28 @@ import com.security.core.social.qq.entity.QQUserInfo;
 /**
  * 获取QQ用户信息
  * @author sca
- *
  */
 public class QQApiImpl extends AbstractOAuth2ApiBinding implements QQ {
-	
-	// 通过token获取openid
+
+	/**
+	 * 通过token获取openid
+ 	 */
 	private static final String URL_GET_OPENID = "https://graph.qq.com/oauth2.0/me?access_token=%s";
-		
-	//获取用户信息
+
+	/**
+	 * 获取用户信息
+	 */
 	private static final String URL_GET_USER_INFO = "https://graph.qq.com/user/get_user_info?oauth_consumer_key=%s&openid=%s";
 
 	@Getter
 	@Setter
-	private String appId; //应用ID
+	private String appId;
 
 	@Getter
 	@Setter
-	private String openid;//QQ用户在该应用ID
+	private String openid;
 	
-	private ObjectMapper objmapper = new ObjectMapper();
+	private ObjectMapper objectMapper = new ObjectMapper();
 	
 	public QQApiImpl(String accessToken,String appId) {
 		// 默认的策略是 AUTHORIZATION_HEADER 将参数加入到请求头中
@@ -56,7 +59,7 @@ public class QQApiImpl extends AbstractOAuth2ApiBinding implements QQ {
 		
 		QQUserInfo userInfo = null;
 		try {
-			userInfo = objmapper.readValue(result, QQUserInfo.class);
+			userInfo = objectMapper.readValue(result, QQUserInfo.class);
 			userInfo.setOpenId(openid);
 			return userInfo;
 		} catch (Exception e) {

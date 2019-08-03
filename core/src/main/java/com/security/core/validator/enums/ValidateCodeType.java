@@ -7,15 +7,23 @@ import lombok.Getter;
  * @author sca
  */
 public enum ValidateCodeType {
-	
+
+	/**
+	 * 短信验证码
+	 */
 	SMS("短信"){
-		public String getParamNameVaildate() {
+		@Override
+		public String getParamNameValidate() {
 			return SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_SMS;
 		}
 	},
-	
+
+	/**
+	 * 图片验证码
+	 */
 	IMAGE("图片"){
-		public String getParamNameVaildate() {
+		@Override
+		public String getParamNameValidate() {
 			return SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_IMAGE;
 		}
 	};
@@ -27,6 +35,6 @@ public enum ValidateCodeType {
 	@Getter
 	private String typeName;
 
-	public abstract String getParamNameVaildate();
+	public abstract String getParamNameValidate();
 
 }

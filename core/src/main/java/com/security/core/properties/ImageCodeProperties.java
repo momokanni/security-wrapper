@@ -2,6 +2,11 @@ package com.security.core.properties;
 
 import lombok.Data;
 
+/**
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:58
+ **/
 @Data
 public class ImageCodeProperties {
 

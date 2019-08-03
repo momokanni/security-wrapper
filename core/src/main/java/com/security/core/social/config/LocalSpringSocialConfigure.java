@@ -14,8 +14,10 @@ import com.security.core.social.interfaces.SocialAuthenticationFilterPostProcess
  * 通过继承SpringSocialConfigurer重写postProcess方法来修改SocialAuthenticationFilter的默认配置
  */
 public class LocalSpringSocialConfigure extends SpringSocialConfigurer{
-	
-	//社交认证成功处理器
+
+	/**
+	 * 社交认证成功处理器
+	 */
 	@Getter
 	@Setter
 	private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;

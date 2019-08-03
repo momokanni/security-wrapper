@@ -24,14 +24,23 @@ import com.security.core.support.SocialUserInfo;
 import com.security.core.properties.SecurityConstants;
 import com.security.core.properties.SecurityProperties;
 
+/**
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:55
+ **/
 @Slf4j
 @RestController
 public class BrowserSecurityController {
 
-	// 当需要身份认证跳转到该controller前，springSecurity会把请求插入到【请求缓存】中
-	// 身份认证方法可从该类中拿到请求
+	/**
+	 * 当需要身份认证跳转到该controller前，springSecurity会把请求插入到【请求缓存】中
+	 * 身份认证方法可从该类中拿到请求
+ 	 */
 	private RequestCache requesetCache = new HttpSessionRequestCache();
-	// spring 跳转策略 工具
+	/**
+	 * spring 跳转策略 工具
+	 */
 	private RedirectStrategy redirect = new DefaultRedirectStrategy();
 	
 	@Autowired

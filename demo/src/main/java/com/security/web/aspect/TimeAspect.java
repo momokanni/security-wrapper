@@ -35,12 +35,12 @@ public class TimeAspect {
 			log.info("aspect get request arg is {} ",arg);
 		}
 		
-		long start = new Date().getTime();
+		long start = System.currentTimeMillis();
 		
 		// 调用后续处理器 -- 进入被调用方法
 		Object object = pjp.proceed();
 		
-		log.info("aspect time cosuming: {}" , (new Date().getTime() - start));
+		log.info("aspect time cosuming: {}" , (System.currentTimeMillis() - start));
 		
 		log.info("aspect time end");
 		

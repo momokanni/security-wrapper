@@ -17,7 +17,7 @@ public class SessionValidateCodeRepository implements ValidateCodeRepository {
 	/**
 	 * 存入session中code对应key的前缀
 	 */
-	String SESSION_KEY_PREFIX = "SESSION_KEY_FOR_CODE_";
+	String sessionKeyPrefix = "SESSION_KEY_FOR_CODE_";
 	
 	/**
 	 * 操作session的工具类
@@ -49,7 +49,7 @@ public class SessionValidateCodeRepository implements ValidateCodeRepository {
 	 * @return
 	 */
 	private String getSessionKey(ServletWebRequest request, ValidateCodeType validateCodeType) {
-		return SESSION_KEY_PREFIX + validateCodeType.toString().toUpperCase();
+		return sessionKeyPrefix + validateCodeType.toString().toUpperCase();
 	}
 
 }

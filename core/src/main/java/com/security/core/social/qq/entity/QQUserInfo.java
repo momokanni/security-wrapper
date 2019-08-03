@@ -6,8 +6,10 @@ package com.security.core.social.qq.entity;
 import lombok.Data;
 
 /**
- * @author sca
- */
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:53
+ **/
 @Data
 public class QQUserInfo {
 	

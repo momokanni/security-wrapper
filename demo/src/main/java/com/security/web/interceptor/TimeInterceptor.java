@@ -33,18 +33,20 @@ public class TimeInterceptor implements HandlerInterceptor {
 		}
 		log.info("interceptor preHandle ...");
 		log.info("current request class: {}, method name: {}" , ((HandlerMethod) handler).getBean().getClass().getName() , ((HandlerMethod) handler).getMethod().getName());
-		request.setAttribute("start", new Date().getTime()); // --> 在请求request中添加start参数，用以在三个方法间传值
+		// --> 在请求request中添加start参数，用以在三个方法间传值
+		request.setAttribute("start", System.currentTimeMillis());
 		return true;
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView modelView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView modelView) {
 		log.info("request startTime: {}" , request.getAttribute("start"));
-		if (request.getAttribute("start") == null) {
+		String attributeName = "start";
+		if (request.getAttribute(attributeName) == null) {
 			return;
 		}
 		log.info("interceptor postHandle ...");
-		log.info("requst time cosuming: {}" , (new Date().getTime() - Long.parseLong(request.getAttribute("start").toString())));
+		log.info("request time consuming: {}" , (System.currentTimeMillis() - Long.parseLong(request.getAttribute("start").toString())));
 	}
 
 	@Override

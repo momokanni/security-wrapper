@@ -11,12 +11,17 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @Description swagger配置类
+ * @Author sca
+ * @Date 2019-08-03 17:57
+ **/
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
 	@Bean
-	public Docket alipayApi() {
+	public Docket aipayApi() {
 
 		return new Docket(DocumentationType.SWAGGER_2).groupName("Security安全接口文档") 
 				          .apiInfo(apiInfo())

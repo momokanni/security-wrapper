@@ -47,12 +47,12 @@ public class SocialConfig extends SocialConfigurerAdapter {
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
 
-		// 修改UserConnection表名只能在默认表名前 + 前缀：security_userConnection
-		// JdbcUsersConnectionRepository  repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
-		// repository.setTablePrefix("huzhu_"); // 设定表名前缀
-		// return repository;
-		
-		//默认表名
+		/**
+		 * 修改UserConnection表名只能在默认表名前 + 前缀：security_userConnection
+		 * JdbcUsersConnectionRepository  repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
+		 * repository.setTablePrefix("huzhu_"); // 设定表名前缀
+		 * return repository;
+		 */
 		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
 		if(connectionSignUp != null) {
 			// 三方登录默认注册

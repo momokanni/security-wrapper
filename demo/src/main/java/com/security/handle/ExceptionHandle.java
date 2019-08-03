@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
+/**
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:57
+ **/
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandle {

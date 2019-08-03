@@ -13,8 +13,15 @@ import com.security.core.properties.SecurityProperties;
 import com.security.core.social.qq.connect.QQConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 
+/**
+ * @Description 
+ * @author sca
+ * @Date 2019-08-03 17:59
+ **/
 @Configuration
-//配置文件中存在该配置（com.security.social.qq.app-id）则生效，无配置不生效
+/**
+ * 配置文件中存在该配置（com.security.social.qq.app-id）则生效，无配置不生效
+ */
 @ConditionalOnProperty(prefix = "com.security.social.qq",name = "app-id")
 public class QQAutoConfig extends SocialConfigurerAdapter {
 	

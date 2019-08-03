@@ -25,10 +25,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class MyUserDetailsService implements SuperUserDetailsService,SocialUserDetailsService {
-
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+public class MyUserDetailsServiceImpl implements SuperUserDetailsService,SocialUserDetailsService {
 
 	@Autowired
 	private DemoUserDetailsDao demoUserDetailsDao;

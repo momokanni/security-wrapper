@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.security.core.social.view;
 
 import java.util.Map;

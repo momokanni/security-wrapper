@@ -51,7 +51,7 @@ public interface SecurityConstants {
 	/**
 	 * openid参数名
 	 */
-	String DEFAULT_PARAMETER_NAME_OPENID = "openId";
+	String DEFAULT_PARAMETER_NAME_OPENID = "openid";
 	/**
 	 * providerId参数名
 	 */

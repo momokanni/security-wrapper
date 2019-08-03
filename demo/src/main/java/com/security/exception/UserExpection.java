@@ -5,6 +5,11 @@ import lombok.Getter;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 
+/**
+ * @Description 身份认证异常类
+ * @Author sca
+ * @Date 2019-08-03 17:58
+ **/
 @Getter
 public class UserExpection extends AuthenticationException {
 

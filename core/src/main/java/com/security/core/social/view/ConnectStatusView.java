@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.security.core.social.view;
 
 import java.util.HashMap;
@@ -32,7 +29,7 @@ public class ConnectStatusView extends AbstractView {
 		//源码: SecuritySocial将查询到的信息put到一个connections(map)中，然后又model.addAttribute("connectionMap",connections);	
 		Map<String, List<Connection<?>>> connections = (Map<String, List<Connection<?>>>) model.get("connectionMap");
 		
-		Map<String, Boolean> result = new HashMap<>();
+		Map<String, Boolean> result = new HashMap<>(6);
 		for (String key : connections.keySet()) {
 			result.put(key, CollectionUtils.isNotEmpty(connections.get(key)));
 		}

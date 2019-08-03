@@ -1,6 +1,9 @@
 package com.security.core.authencation.sms;
 
 import java.util.Collection;
+
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
@@ -9,18 +12,18 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
  * @author sca
  * 仿造UsernamePasswordAuthenticationToken来创建【短信验证token】
  */
+@Slf4j
 public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
-	// ~ Instance fields
-	// ================================================================================================
-	// 存放认证信息
-	//认证前：手机号，认证成功后：登录的用户对象
-	private final Object principal;
+	/**
+	 * 存放认证信息
+	 * 认证前：手机号，认证成功后：登录的用户对象
+	 */
 
-	// ~ Constructors
-	// ===================================================================================================
+	@Getter
+	private final Object principal;
 
 	/**
 	 * This constructor can be safely used by any code that wishes to create a
@@ -48,13 +51,12 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 	public SmsCodeAuthenticationToken(Object principal,Collection<? extends GrantedAuthority> authorities) {
 		super(authorities);
 		this.principal = principal;
-		super.setAuthenticated(true); // must use super, as we override
+		// must use super, as we override
+		super.setAuthenticated(true);
 	}
 
-	// ~ Methods
-	// ========================================================================================================
-	
-	
+
+	@Override
 	public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
 		if (isAuthenticated) {
 			throw new IllegalArgumentException(
@@ -68,12 +70,9 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 	public void eraseCredentials() {
 		super.eraseCredentials();
 	}
-	
+
+	@Override
 	public Object getCredentials() {
 		return null;
-	}
-
-	public Object getPrincipal() {
-		return this.principal;
 	}
 }

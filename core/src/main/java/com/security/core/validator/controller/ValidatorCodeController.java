@@ -13,6 +13,11 @@ import org.springframework.web.context.request.ServletWebRequest;
 import com.security.core.properties.SecurityConstants;
 import com.security.core.validator.processor.ValidateCodeProcessor;
 
+/**
+ * @Description 验证码请求处理器
+ * @Author sca
+ * @Date 2019-08-03 18:00
+ **/
 @RestController
 public class ValidatorCodeController {
 

@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * 自定义注解，校验类
- */
+ * @Description 自定义注解，校验类
+ * @Author sca
+ * @Date 2019-08-03 17:54
+ **/
 @Slf4j
 public class MyConstraintValidator implements ConstraintValidator<MyConstraint, Object> {
 

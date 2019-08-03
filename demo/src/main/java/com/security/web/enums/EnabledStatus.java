@@ -10,8 +10,14 @@ import lombok.Getter;
 @Getter
 public enum EnabledStatus {
 
+    /**
+     * 已启用
+     */
     ENABLED("0",true),
-    NOT_ENABELD("1",false),
+    /**
+     * 未启用
+     */
+    NOT_ENABLED("1",false),
     ;
 
     private String code;

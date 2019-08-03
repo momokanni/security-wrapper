@@ -10,12 +10,15 @@ import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactory;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.web.servlet.View;
 import com.security.core.properties.SecurityProperties;
 import com.security.core.properties.WeixinProperties;
 import com.security.core.social.view.ConnectResultView;
-import com.security.core.social.wechat.connect.WeixinConnectionFactory;
+import com.security.core.social.wechat.connect.WeiXinConnectionFactory;
 
 /**
  * 微信登录配置
@@ -24,7 +27,7 @@ import com.security.core.social.wechat.connect.WeixinConnectionFactory;
  */
 @Configuration
 @ConditionalOnProperty(prefix = "com.security.social.weixin", name = "app-id")
-public class WeixinAutoConfiguration extends SocialConfigurerAdapter {
+public class WeiXinAutoConfiguration extends SocialConfigurerAdapter {
 
 	@Autowired
 	private SecurityProperties securityProperties;
@@ -42,9 +45,16 @@ public class WeixinAutoConfiguration extends SocialConfigurerAdapter {
 
 	protected ConnectionFactory<?> createConnectionFactory() {
 		WeixinProperties wx = securityProperties.getSocial().getWeixin();
-		return new WeixinConnectionFactory(wx.getProviderId(),
+		return new WeiXinConnectionFactory(wx.getProviderId(),
 										   wx.getAppId(),
 										   wx.getAppSecret());
+	}
+
+	@Bean
+	public ConnectController connectController(
+			ConnectionFactoryLocator connectionFactoryLocator,
+			ConnectionRepository connectionRepository) {
+		return new ConnectController(connectionFactoryLocator, connectionRepository);
 	}
 
 	

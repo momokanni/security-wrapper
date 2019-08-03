@@ -11,16 +11,16 @@ import org.springframework.social.connect.support.OAuth2ConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2ServiceProvider;
 
-import com.security.core.social.wechat.api.Weixin;
+import com.security.core.social.wechat.api.WeiXin;
 
 /**
  * @author sca
  * 微信连接工厂
  */
-public class WeixinConnectionFactory extends OAuth2ConnectionFactory<Weixin> {
+public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXin> {
 	
-	public WeixinConnectionFactory(String providerId, String appId, String appSecret) {
-		super(providerId, new WeixinServiceProvider(appId,appSecret), new WeixinAdapter());
+	public WeiXinConnectionFactory(String providerId, String appId, String appSecret) {
+		super(providerId, new WeiXinServiceProvider(appId,appSecret), new WeixinAdapter());
 	}
 	
 	/**
@@ -30,8 +30,8 @@ public class WeixinConnectionFactory extends OAuth2ConnectionFactory<Weixin> {
 	 */
 	@Override
 	protected String extractProviderUserId(AccessGrant accessGrant) {
-		if(accessGrant instanceof WeixinAccessGrant) {
-			return ((WeixinAccessGrant)accessGrant).getOpenId();
+		if(accessGrant instanceof WeiXinAccessGrant) {
+			return ((WeiXinAccessGrant)accessGrant).getOpenId();
 		}
 		return null;
 	}
@@ -45,25 +45,25 @@ public class WeixinConnectionFactory extends OAuth2ConnectionFactory<Weixin> {
 	 * 		所以QQ的Adapter可以是单例的
 	 */
 	@Override
-	public Connection<Weixin> createConnection(AccessGrant accessGrant) {
+	public Connection<WeiXin> createConnection(AccessGrant accessGrant) {
 
-		return new OAuth2Connection<Weixin>(getProviderId(), extractProviderUserId(accessGrant),
+		return new OAuth2Connection<WeiXin>(getProviderId(), extractProviderUserId(accessGrant),
 				accessGrant.getAccessToken(),accessGrant.getRefreshToken(),accessGrant.getExpireTime(),
 				getOAuth2ServiceProvider(),getApiAdapter(extractProviderUserId(accessGrant)));
 	}
 	
 	@Override
-	public Connection<Weixin> createConnection(ConnectionData data) {
+	public Connection<WeiXin> createConnection(ConnectionData data) {
 
 		return createConnection(data);
 	}
 	
-	private ApiAdapter<Weixin> getApiAdapter(String providerUserId){
+	private ApiAdapter<WeiXin> getApiAdapter(String providerUserId){
 		return new WeixinAdapter(providerUserId);
 	}
 	
-	private OAuth2ServiceProvider<Weixin> getOAuth2ServiceProvider(){
+	private OAuth2ServiceProvider<WeiXin> getOAuth2ServiceProvider(){
 		
-		return (OAuth2ServiceProvider<Weixin>)getServiceProvider();
+		return (OAuth2ServiceProvider<WeiXin>)getServiceProvider();
 	}
 }

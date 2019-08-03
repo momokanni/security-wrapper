@@ -10,7 +10,13 @@ import lombok.Getter;
 @Getter
 public enum LockStatus {
 
+    /**
+     * 未锁定
+     */
     UNLOCKED("0",true),
+    /**
+     * 已锁定
+     */
     LOCKED("1",false)
     ;
     private String code;

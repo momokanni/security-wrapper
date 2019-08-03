@@ -6,6 +6,8 @@ import com.security.web.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
+
 /**
  * @description: demo user 查询实现层
  * @author: sca
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DemoUserDetailsDaoImpl implements DemoUserDetailsDao {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override

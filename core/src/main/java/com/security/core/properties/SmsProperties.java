@@ -2,6 +2,11 @@ package com.security.core.properties;
 
 import lombok.Data;
 
+/**
+ * @Description 短信配置类
+ * @Author sca
+ * @Date 2019-08-03 17:57
+ **/
 @Data
 public class SmsProperties {
 

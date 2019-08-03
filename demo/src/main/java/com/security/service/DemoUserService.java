@@ -7,5 +7,10 @@ package com.security.service;
  **/
 public interface DemoUserService {
 
+    /**
+     * doSomething
+     * @param userName
+     * @return
+     */
     String doSomething(String userName);
 }

@@ -3,6 +3,11 @@
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * @Description  配置类
+ * @Author sca
+ * @Date 2019-08-03 17:55
+ **/
 @Data
 @ConfigurationProperties(prefix = "com.security")
 public class SecurityProperties {

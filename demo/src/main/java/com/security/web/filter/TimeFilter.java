@@ -20,7 +20,13 @@ import org.slf4j.LoggerFactory;
  * @author sca
  *
  */
-//@Component 注释掉该注解 意在模拟第三方拦截器 配合WebConfig，将第三方拦截器加入到项目中
+
+/**
+ * @Description
+ * @Author sca
+ * @Date 2019-08-03 17:45
+ * @Component 注释掉该注解 意在模拟第三方拦截器 配合WebConfig，将第三方拦截器加入到项目中
+ **/
 public class TimeFilter implements Filter {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -34,10 +40,10 @@ public class TimeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		logger.info("time filter start...");
-		long start = new Date().getTime();
+		long start = System.currentTimeMillis();
 		// 
 		chain.doFilter(request, response);
-		logger.info("time cosuming: {}" , (new Date().getTime() - start));
+		logger.info("time cosuming: {}" , (System.currentTimeMillis() - start));
 		logger.info("time filter finish...");
 	}
 

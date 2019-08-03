@@ -15,10 +15,16 @@ public class ResultVO<T> implements Serializable {
 
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
-    //返回码
+    /**
+     * 返回码
+     */
     private int code;
-    //消息
+    /**
+     * 消息
+     */
     private String msg;
-    //数据
+    /**
+     * 数据
+     */
     private T data;
 }

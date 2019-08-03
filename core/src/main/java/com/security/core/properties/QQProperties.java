@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 public class QQProperties extends BaseSocialProperties {
 
-	// 服务提供商的默认标识
+	/**
+	 * 服务提供商的默认标识
+	 */
 	private String providerId = "qq";
 }

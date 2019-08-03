@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.security.core.social.wechat.api;
 
 import lombok.Data;
@@ -9,7 +6,7 @@ import lombok.Data;
  * @author sca
  */
 @Data
-public class WeixinUserInfo {
+public class WeiXinUserInfo {
 	
 	private String openId;
 	

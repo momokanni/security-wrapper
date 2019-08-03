@@ -2,6 +2,11 @@ package com.security.core.validator.processor;
 
 import org.springframework.web.context.request.ServletWebRequest;
 
+/**
+ * @Description 验证码发送接口
+ * @Author sca
+ * @Date 2019-08-03 17:59
+ **/
 public interface ValidateCodeProcessor {
 	
 	/**

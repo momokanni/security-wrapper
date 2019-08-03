@@ -23,12 +23,12 @@ import java.util.Date;
 @RequestMapping(value ="/file")
 public class DemoFileUpload {
 
-    static final String folder = "/Users/sunlin/Documents/securitySource";
+    static final String FOLDER = "/Users/sunlin/Documents/securitySource";
     @PostMapping
     public FileInfo upload(MultipartFile file) throws IllegalStateException, IOException {
         log.info("文件名称: {} , 原始文件名: {} , 文件大小: {}" , file.getName(),file.getOriginalFilename(),file.getSize());
 
-        File localFile = new File(folder,new Date().getTime()+".txt");
+        File localFile = new File(FOLDER,System.currentTimeMillis()+".txt");
         //将传入的file写入到程序本地文件中
         file.transferTo(localFile);
 
@@ -38,7 +38,7 @@ public class DemoFileUpload {
     @GetMapping(value = "/{id}")
     public void downLoad(@PathVariable String id, HttpServletRequest request, HttpServletResponse response) throws IOException {
         try (
-                InputStream inStream = new FileInputStream(new File(folder,id+".txt"));
+                InputStream inStream = new FileInputStream(new File(FOLDER,id+".txt"));
                 OutputStream outputStream = response.getOutputStream();
         ){
             response.setContentType("application/x-download");

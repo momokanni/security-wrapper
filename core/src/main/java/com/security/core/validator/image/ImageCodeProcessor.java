@@ -6,6 +6,11 @@ import org.springframework.web.context.request.ServletWebRequest;
 import com.security.core.validator.entity.ImageCode;
 import com.security.core.validator.processor.AbstractValidateCodeProcessor;
 
+/**
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:58
+ **/
 @Component(value = "imageValidateCodeProcessor")
 public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ImageCode> {
 	

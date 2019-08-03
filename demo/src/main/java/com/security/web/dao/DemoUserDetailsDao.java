@@ -10,7 +10,17 @@ import com.security.web.entity.User;
  **/
 public interface DemoUserDetailsDao {
 
+    /**
+     * 通过ID查询用户详情
+     * @param userId
+     * @return
+     */
     User loadUserDetailsById(String userId);
 
+    /**
+     * 通过手机号查询用户详情
+     * @param userId
+     * @return
+     */
     User loadUserDetailsByTel(String userId);
 }

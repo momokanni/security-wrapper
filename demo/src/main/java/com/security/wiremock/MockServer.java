@@ -29,7 +29,7 @@ public class MockServer {
 	private static void mock(String url, String filePath) throws IOException {
 		
 		ClassPathResource cpr = new ClassPathResource("wireMock/response/" + filePath + ".txt");
-		String content = StringUtils.join(FileUtils.readLines(cpr.getFile(),"UTF-8").toArray(),"\n"); //读取文件内容
+		String content = StringUtils.join(FileUtils.readLines(cpr.getFile(),"UTF-8").toArray(),"\n");
 		WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/resource")).willReturn(WireMock.aResponse().withBody(content).withStatus(200)));
 	}
 

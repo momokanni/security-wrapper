@@ -21,8 +21,10 @@ import com.security.core.properties.SecurityConstants;
 public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
 	private String tel = SecurityConstants.DEFAULT_PARAMETER_NAME_TEL;
-	
-	//只接受post请求
+
+	/**
+	 * 只接受post请求
+	 */
 	private boolean postOlny = true;
 	
 	public SmsCodeAuthenticationFilter() {
@@ -32,8 +34,9 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse rep) throws AuthenticationException, IOException, ServletException {
-		
-		if(postOlny && !req.getMethod().equals("POST")) {
+
+		String requestType = "POST";
+		if(postOlny && !requestType.equals(req.getMethod())) {
 			throw new AuthenticationServiceException("Authentication method not supported: " + req.getMethod());
 		}
 		
@@ -53,7 +56,9 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
 
-	//将请求详情信息set到SmsCodeAuthenticationToken
+	/**
+	 * 将请求详情信息set到SmsCodeAuthenticationToken
+	 */
 	protected void setDetail(HttpServletRequest request, SmsCodeAuthenticationToken authRequest) {
 		
 		authRequest.setDetails(authenticationDetailsSource.buildDetails(request));

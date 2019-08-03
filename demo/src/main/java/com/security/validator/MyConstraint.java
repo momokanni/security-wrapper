@@ -7,12 +7,24 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-// @Target指明该注解可以标注在哪些地方
+
+/**
+ * @Target指明该注解可以标注在哪些地方@Target指明该注解可以标注在哪些地方
+ */
 @Target({ElementType.METHOD, ElementType.FIELD})
-// 指明该注解在运行时发挥作用
+/**
+  * 指明该注解在运行时发挥作用
+  */
 @Retention(RetentionPolicy.RUNTIME)
-// 指明注解执行校验逻辑的类
+/**
+  * 指明注解执行校验逻辑的类
+  */
 @Constraint(validatedBy = MyConstraintValidator.class)
+/**
+ * @Description
+ * @author sca
+ * @Date 2019-08-03 17:58
+ **/
 public @interface MyConstraint {
 	
 	String message() default "{org.hibernate.validator.constraints.NotBlank.message}";

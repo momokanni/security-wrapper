@@ -2,6 +2,9 @@ package com.security.web.async;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.async.DeferredResult;
 
@@ -19,17 +22,14 @@ import org.springframework.web.context.request.async.DeferredResult;
  */
 @Component
 public class DeferredResultHolder {
-	
-	//key : value == 订单号 : 处理结果
+
+	/**
+	 * key : value == 订单号 : 处理结果
+	 */
+	@Getter
+	@Setter
 	private Map<String, DeferredResult<String>> map = new HashMap<String, DeferredResult<String>>();
 
-	public Map<String, DeferredResult<String>> getMap() {
-		return map;
-	}
-
-	public void setMap(Map<String, DeferredResult<String>> map) {
-		this.map = map;
-	}
 	
 	
 }

@@ -15,6 +15,11 @@ import com.security.core.validator.exception.ValidateCodeException;
 import com.security.core.validator.inteface.ValidateCodeGenerator;
 import com.security.core.validator.inteface.ValidateCodeRepository;
 
+/**
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:55
+ **/
 @Slf4j
 public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> implements ValidateCodeProcessor{
 
@@ -73,7 +78,9 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
 	 */
 	private void save(ServletWebRequest request, T validateCode) {
 		ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
-		//sessionStrategy.setAttribute(request,  getSessionKey(request), code);
+		/**
+		 * sessionStrategy.setAttribute(request,  getSessionKey(request), code);
+		 */
 		validateRepository.save(request, code, getValidateCodeType(request));
 	}
 	
@@ -99,7 +106,7 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
 		T codeInSession = (T) validateRepository.get(servletWebRequest, processorType);
 		String codeInRequest;
 		try {
-			codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), processorType.getParamNameVaildate());
+			codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), processorType.getParamNameValidate());
 		} catch (ServletRequestBindingException e) {
 			throw new ValidateCodeException("获取验证码的值失败");
 		}

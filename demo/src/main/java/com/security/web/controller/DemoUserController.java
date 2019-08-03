@@ -44,7 +44,7 @@ public class DemoUserController {
     private SecurityProperties securityProperties;
 
     @GetMapping
-    @JsonView(value = DemoUser.userSimpleView.class)
+    @JsonView(value = DemoUser.UserSimpleView.class)
     public List<DemoUser> getUserCount(UserQueryCondition userQueryCondition,
                                        @PageableDefault(page = 1,size = 11,sort = "age",direction = Sort.Direction.DESC) Pageable page){
         log.info("mockMvc test 反射查看传入参数: {}" , ReflectionToStringBuilder.toString(userQueryCondition , ToStringStyle.MULTI_LINE_STYLE));
@@ -62,7 +62,7 @@ public class DemoUserController {
      * @return
      */
     @GetMapping(value = "/{id}")
-    @JsonView(value = DemoUser.userDetailView.class)
+    @JsonView(value = DemoUser.UserDetailView.class)
     @ApiOperation(value = "查询用户详情")
     public DemoUser getInfo(@ApiParam(value = "用户ID") @PathVariable(value = "id") String userId) {
         DemoUser demoUser = new DemoUser();
@@ -145,14 +145,15 @@ public class DemoUserController {
     @ApiOperation(value="浏览器获取认证用户信息")
     @GetMapping(value = "/authUser")
     public Object getAuthUser(@AuthenticationPrincipal UserDetails user) {
-        //第一种方式： 无参数情况下： return SecurityContextHolder.getContext().getAuthentication();
-
-        //第二种 方法参数：public Object getAuthUser（ Authentication authentication ）， springMVC会自主的去SecurityContext中去找authentication
-        //return authentication;
-
-        /**一二两种方法返回的都是全部认证信息*/
-
-        //第三种： 只返回最终放入securityContext中的userDetails信息
+        /**
+         * 第一种方式： 无参数情况下： return SecurityContextHolder.getContext().getAuthentication();
+         *
+         * 第二种 方法参数：public Object getAuthUser（ Authentication authentication ）， springMVC会自主的去SecurityContext中去找authentication
+         * return authentication;
+         * 一二两种方法返回的都是全部认证信息
+         *
+         * 第三种： 只返回最终放入securityContext中的userDetails信息
+         */
         return user;
     }
 

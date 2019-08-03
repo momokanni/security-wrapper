@@ -10,6 +10,11 @@ import org.apache.ibatis.annotations.*;
  **/
 public interface UserMapper {
 
+    /**
+     * 用户ID获取用户详情
+     * @param userId
+     * @return
+     */
     @Select(value = "select * from user where user_name = #{userId}")
     @Results({@Result(column = "user_name",property = "userName"),
               @Result(column = "lock_status",property = "lockStatus"),
@@ -17,6 +22,11 @@ public interface UserMapper {
               @Result(column = "create_time",property = "createTime")})
     User loadUserDetailsById(String userId);
 
+    /**
+     * 手机号获取用户详情
+     * @param tel
+     * @return
+     */
     @Select(value = "select * from user where tel = #{tel}")
     @Results({@Result(column = "user_name",property = "userName"),
             @Result(column = "lock_status",property = "lockStatus"),

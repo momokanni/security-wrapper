@@ -15,7 +15,7 @@ import org.springframework.social.oauth2.AccessGrant;
  * 
  * 所以在这继承了标准的AccessGrant,添加了openId字段，作为对“获取access_token”返回信息的封装
  */
-public class WeixinAccessGrant extends AccessGrant {
+public class WeiXinAccessGrant extends AccessGrant {
 
 	/**
 	 * 
@@ -26,11 +26,11 @@ public class WeixinAccessGrant extends AccessGrant {
 	@Setter
 	private String openId;
 	
-	public WeixinAccessGrant(String accessToken) {
+	public WeiXinAccessGrant(String accessToken) {
 		super("");
 	}
 	
-	public WeixinAccessGrant(String accessToken,String scope,String refreshToken,Long expiresIn) {
+	public WeiXinAccessGrant(String accessToken, String scope, String refreshToken, Long expiresIn) {
 		super(accessToken, scope, refreshToken, expiresIn);
 	}
 }

@@ -5,11 +5,11 @@ import org.springframework.social.connect.Connection;
 import com.security.core.support.SocialUserInfo;
 
 /**
- * 
- * @author sca
- *
- */
-public abstract class SocialController {
+ * @Description 
+ * @Author sca
+ * @Date 2019-08-03 17:24
+ **/
+public abstract class AbstractSocialController {
 	
 	protected SocialUserInfo buildSocialUserInfo(Connection<?> connection) {
 		

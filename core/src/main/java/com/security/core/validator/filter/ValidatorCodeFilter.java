@@ -126,8 +126,9 @@ public class ValidatorCodeFilter extends OncePerRequestFilter implements Initial
 	 * @return
 	 */
 	private ValidateCodeType getValidateCodeType(HttpServletRequest req) {
+		String requestType = "get";
 		ValidateCodeType result = null;
-		if (!StringUtils.equalsIgnoreCase(req.getMethod(), "get")) {
+		if (!StringUtils.equalsIgnoreCase(req.getMethod(), requestType)) {
 			Set<String> urls = urlMap.keySet();
 			for (String url : urls) {
 				// 路径匹配

@@ -10,6 +10,11 @@ import com.security.core.validator.inteface.ValidateCodeGenerator;
 import com.security.core.validator.sms.DefaultSmsCodeSender;
 import com.security.core.validator.sms.SmsCodeSender;
 
+/**
+ * @Description 验证码配置类
+ * @Author sca
+ * @Date 2019-08-03 17:58
+ **/
 @Configuration
 public class ValidateCodeBeanConfig {
 
@@ -25,7 +30,9 @@ public class ValidateCodeBeanConfig {
 	 * @return
 	 */
 	@Bean
-	//该注解，第一种方式： 再实例化该对象时，首先检查是否已创建名为：imageValidateCodeGenerator的实例。
+	/**
+	 * 该注解，第一种方式： 再实例化该对象时，首先检查是否已创建名为：imageValidateCodeGenerator的实例。
+	 */
 	@ConditionalOnMissingBean(name = "imageValidateCodeGenerator")
 	public ValidateCodeGenerator imageValidateCodeGenerator () {
 		ImageValidateCodeGenerator icg = new ImageValidateCodeGenerator();
@@ -34,7 +41,9 @@ public class ValidateCodeBeanConfig {
 	}
 	
 	@Bean
-	//该注解，第二种：查找是否已存在 SmsCodeSender这个接口的实现
+	/**
+	 * 该注解，第二种：查找是否已存在 SmsCodeSender这个接口的实现
+	 */
 	@ConditionalOnMissingBean(SmsCodeSender.class)
 	public SmsCodeSender smsCodeGenerator () {
 		

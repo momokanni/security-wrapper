@@ -71,8 +71,10 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 	public PersistentTokenRepository persistentTokenRepository() {
 		JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
 		tokenRepository.setDataSource(dataSource);
-		//第一次启动时创建数据库表
-		//tokenRepository.setCreateTableOnStartup(true);
+		/**
+		 * 第一次启动时创建数据库表
+		 * tokenRepository.setCreateTableOnStartup(true);
+		 */
 		return tokenRepository;
 	}
 	
@@ -103,7 +105,6 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 	 * ↓
 	 * Rest API
 	 */
-	//其中一功能： 自定义login页面
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -113,9 +114,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 		http
 			.apply(validateCodeConfig)
 			.and()
-			.apply(smsCodeAuthenticationConfig)//将SmsCodeAuthenticationConfig配置项添加到browser中
+			.apply(smsCodeAuthenticationConfig)
 			.and()
-			.apply(socialSecurityConfig) //社交类配置
+			.apply(socialSecurityConfig)
 			.and()
 			//【记住我】配置，如果想在'记住我'登录时记录日志，
 			//可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
@@ -126,7 +127,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 				.tokenValiditySeconds(securityPro.getBrowser().getRememberMeSeconds())
 				// 指定UserDetailsService
 				.userDetailsService(uds)
-				//httphttpBasic() 登录弹窗 
+				//httpBasic() 表单登录弹窗
 			.and()
 			.sessionManagement() 
 				.invalidSessionStrategy(invalidSessionStrategy)

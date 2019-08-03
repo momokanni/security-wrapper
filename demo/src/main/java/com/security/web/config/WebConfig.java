@@ -11,6 +11,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @Description 配置类
+ * @Author sca
+ * @Date 2019-08-03 18:00
+ **/
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 	
@@ -23,11 +28,13 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private TimeInterceptor timeInterceptor;
 
-	// 同步注册拦截器
+	/**
+	 * 同步注册拦截器
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 
-		registry.addInterceptor(timeInterceptor).addPathPatterns("/**")
+		registry.addInterceptor(timeInterceptor).addPathPatterns("/**").excludePathPatterns()
 				.excludePathPatterns("/index.html","/*","/resources/*","/loginout");
 	}
 	

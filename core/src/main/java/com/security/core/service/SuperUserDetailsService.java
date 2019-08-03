@@ -11,6 +11,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  **/
 public interface SuperUserDetailsService extends UserDetailsService {
 
+    /**
+     * 通过手机号获取用户详情
+     * @param tel
+     * @return
+     * @throws UsernameNotFoundException
+     */
     UserDetails loadUserByTel(String tel) throws UsernameNotFoundException;
 
 }

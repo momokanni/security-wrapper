@@ -16,26 +16,32 @@ import java.util.Date;
  **/
 public class DemoUser {
 
-    public interface userSimpleView {};
+    public interface UserSimpleView {};
 
-    public interface userDetailView extends userSimpleView {};
+    public interface UserDetailView extends UserSimpleView {};
 
     private int id;
-    // 用户名
+    /**
+     * 用户名
+     */
     @NotNull
     @MyConstraint(message = "自定义注解测试")
     @ApiModelProperty(value = "用户名称")
     private String username;
-    // 密码
+    /**
+     * 密码
+     */
     @NotBlank(message = "密码不能为空")
     @ApiModelProperty(value = "密码")
     private String pwd;
-    // 生日
+    /**
+     * 生日
+     */
     @Past
     @ApiModelProperty(value = "生日")
     private Date birthday;
 
-    @JsonView(value = userSimpleView.class)
+    @JsonView(value = UserSimpleView.class)
     public int getId() {
         return id;
     }
@@ -44,7 +50,7 @@ public class DemoUser {
         this.id = id;
     }
 
-    @JsonView(value = userSimpleView.class)
+    @JsonView(value = UserSimpleView.class)
     public String getUsername() {
         return username;
     }
@@ -53,7 +59,7 @@ public class DemoUser {
         this.username = username;
     }
 
-    @JsonView(value = userDetailView.class)
+    @JsonView(value = UserDetailView.class)
     public String getPwd() {
         return pwd;
     }
@@ -62,7 +68,7 @@ public class DemoUser {
         this.pwd = pwd;
     }
 
-    @JsonView(value = userSimpleView.class)
+    @JsonView(value = UserSimpleView.class)
     public Date getBirthday() {
         return birthday;
     }
