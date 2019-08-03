@@ -27,8 +27,9 @@ public class SpringSocialConfigurePostProcessor implements BeanPostProcessor {
 	 */
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		
-		if(StringUtils.equals(beanName, "socialSecurityConfig")) {
+
+		String keyWord = "socialSecurityConfig";
+		if(StringUtils.equals(beanName, keyWord)) {
 			LocalSpringSocialConfigure config = (LocalSpringSocialConfigure)bean;
 			config.signupUrl(SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL);
 			return config;

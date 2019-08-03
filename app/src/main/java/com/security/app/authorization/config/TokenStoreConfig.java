@@ -37,8 +37,10 @@ public class TokenStoreConfig {
 	 * @author Administrator
 	 */
 	@Configuration
-	// 当demo配置文件里配置项为：security.oauth.storeType = jwt,则该内部静态类配置生效
-	// matchIfMissing = true:未配置也正常生效
+	/**
+	 * 当demo配置文件里配置项为：security.oauth.storeType = jwt,则该内部静态类配置生效
+	 * matchIfMissing = true:未配置也正常生效
+ 	 */
 	@ConditionalOnProperty(prefix = "security.oauth", name = "storeType", havingValue = "jwt", matchIfMissing = false)
 	public static class JwtTokenConfig{
 		

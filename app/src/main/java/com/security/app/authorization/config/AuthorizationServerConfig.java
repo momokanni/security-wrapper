@@ -20,14 +20,17 @@ import org.springframework.stereotype.Component;
 import com.security.core.properties.OAuth2ClientProperties;
 import com.security.core.properties.SecurityProperties;
 
-/**
- * 授权服务类
- * @author sca
- *
- */
+
 @Component
-// 开启认证服务器
+/**
+ * 开启认证服务器
+ */
 @EnableAuthorizationServer
+/**
+ * @Description 授权服务类
+ * @author sca
+ * @Date 2019-08-03 18:23
+ **/
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
 	
 	@Autowired
@@ -58,9 +61,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 				 .authenticationManager(authenticationManager)
 				 .userDetailsService(userDetailService);
 		if(jwtTokenConverter != null && jwtTokenEnhancer != null) {
-			// endpoints.accessTokenConverter(jwtTokenConverter);
-			// 增强器链
-			// 将默认的token借由jwtTokenConverter转换成jwt，再通过jwtTokenEnhancer添加自定义信息
+			/**
+			 * endpoints.accessTokenConverter(jwtTokenConverter);
+			 * 增强器链
+			 * 将默认的token借由jwtTokenConverter转换成jwt，再通过jwtTokenEnhancer添加自定义信息
+			 */
 			TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
 			List<TokenEnhancer> enhancers = new ArrayList<>();
 			enhancers.add(jwtTokenEnhancer);

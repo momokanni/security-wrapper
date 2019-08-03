@@ -55,21 +55,23 @@ public class OwnAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
 	
 	@Autowired
 	private ClientDetailsService clientDetailsService;
-	
-	//TokenEnhancer是令牌增强器，可定制token
-	//TokenStore定制令牌存取
+
+	/**
+	 * TokenEnhancer是令牌增强器，可定制token
+	 * TokenStore定制令牌存取
+	 */
 	@Autowired
 	private AuthorizationServerTokenServices authorizationServerTokenServices;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws ServletException, IOException {
 		
 		/** basicAuthenticationFilter 提供了解析请求头的部分代码 **/
 		String header = request.getHeader("Authorization");
-		
-		if(header == null || !header.startsWith("Basic")) {
+
+		String keyWord = "Basic";
+		if(header == null || !header.startsWith(keyWord)) {
 			
 			throw new UnapprovedClientAuthenticationException("请求头中无client信息");
 		}

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 import com.security.app.social.AppSignUpUtils;
-import com.security.core.social.SocialController;
+import com.security.core.social.AbstractSocialController;
 import com.security.core.support.SocialUserInfo;
 import com.security.core.properties.SecurityConstants;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import org.springframework.http.HttpStatus;
  * @Date 2019-07-24 11:32
  **/
 @RestController
-public class AppSecurityController extends SocialController{
+public class AppSecurityControllerAbstract extends AbstractSocialController {
 	
 	@Autowired
 	private ProviderSignInUtils providerSignInUtils;

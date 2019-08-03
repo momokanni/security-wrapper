@@ -9,18 +9,21 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.social.security.SpringSocialConfigurer;
 
-import com.security.app.authentication.openId.OpenIdAuthenticationSecurityConfig;
+import com.security.app.authentication.openid.OpenIdAuthenticationSecurityConfig;
 import com.security.core.authencation.sms.SmsCodeAuthenticationConfig;
 import com.security.core.properties.SecurityConstants;
 import com.security.core.properties.SecurityProperties;
 import com.security.core.validator.config.ValidateCodeConfig;
 
 /**
+ * @Description 
  * @author sca
- *
- */
+ * @Date 2019-08-03 17:54
+ **/
 @Configuration
-// 开启资源服务器
+/**
+  * 开启资源服务器
+  */
 @EnableResourceServer
 public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 	
@@ -49,8 +52,8 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 	public void configure(HttpSecurity http) throws Exception {
 		
 		http
-		.formLogin()//登录页面 表单提交
-		.loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)//自定义登录页面
+		.formLogin()
+		.loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
 		.loginProcessingUrl(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
 		.successHandler(authenticationSuccessHandler)
 		.failureHandler(authenticationFailureHandler);
@@ -58,13 +61,13 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 		http
 		.apply(validateCodeSecurityConfig)
 			.and()
-		.apply(smsAuthConfig)//将SmsCodeAuthenticationConfig配置项添加到browser中
+		.apply(smsAuthConfig)
 			.and()
 		.apply(socialSecurityConfig)
 			.and()
 		.apply(openIdSecurityConfig)
 			.and()
-		.authorizeRequests() //下面两行都是授权配置
+		.authorizeRequests()
 			.antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
 					SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
 					securityPro.getBrowser().getLoginPage(),
@@ -73,9 +76,9 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 					securityPro.getBrowser().getSession().getSessionInvalidUrl(),
 					"/user/regist")
 				.permitAll()
-			.anyRequest() //任何请求
+			.anyRequest()
 			.authenticated()
 			.and()
-		.csrf().disable();//解决跨域请求
+		.csrf().disable();
 	}
 }
