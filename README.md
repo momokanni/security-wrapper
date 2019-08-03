@@ -8,7 +8,7 @@
 >5. [AdBlock屏蔽页面广告](https://getadblock.com/)  
 >6. [The Great Suspender](https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg?hl=zh-CN)  
 >7. [Octotree](https://zhuanlan.zhihu.com/p/20431851)  
-### 代码规范很重要 [阿里Java规范idea插件](https://github.com/alibaba/p3c/tree/master/idea-plugin)  
+### 代码规范很重要 [阿里代码规范idea插件](https://github.com/alibaba/p3c/tree/master/idea-plugin)  
 ### 编写初心  
 >1. 为了深入了解安全防护的知识  
 >2. 为了读源码
