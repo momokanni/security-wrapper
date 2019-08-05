@@ -13,7 +13,7 @@ import com.security.core.validator.inteface.ValidateCodeRepository;
 
 /**
  * @Description 
- * @Author sca
+ * @author sca
  * @Date 2019-07-24 11:33
  **/
 @Component

@@ -50,7 +50,7 @@ public class AppSignUpUtils {
 	public void doPostSignUp(WebRequest request, String userId) {
 		String key = getKey(request);
 		if(!redisTemplate.hasKey(key)) {
-			throw new AppException("用户社交账号信息不存在");
+			throw new AppException("user social information does not exist");
 		}
 		ConnectionData connectionData = (ConnectionData) redisTemplate.opsForValue().get(key);
 		//connectionFactoryLocator 通过ProviderId(weixin/QQ)获取对应的ConnectionFactory
@@ -58,6 +58,8 @@ public class AppSignUpUtils {
 		Connection<?> connection = connectionFactoryLocator.getConnectionFactory(connectionData.getProviderId())
 								   .createConnection(connectionData);
 		usersConnectionRepository.createConnectionRepository(userId).addConnection(connection);
+
+		redisTemplate.delete(key);
 	}
 
 	/**
@@ -68,7 +70,7 @@ public class AppSignUpUtils {
 	private String getKey(WebRequest request) {
 		String deviceId = request.getParameter("deviceId");
 		if(StringUtils.isBlank(deviceId)) {
-			throw new AppException("设备ID不能为空");
+			throw new AppException("device id not null");
 		}
 		
 		return "security:social.connect."+deviceId;

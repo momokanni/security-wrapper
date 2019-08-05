@@ -8,27 +8,24 @@ spring:
     show-sql: true
     open-in-view: true
   session:
-    store-type: none
-  redis:
-    namespace: validateCode
-    host: 47.94.128.132
-    port: 6379
+    store-type: redis
   resources:
     static-locations: classpath:/resources/static,classpath:/resources
+  redis:
+    port: 6379
+    host: 47.94.128.132
+    password:
 
 server:
   port: 8060
 security:
   oauth:
     tokenStore: redis
-
-
-#security:
-#  clients:
-#    clients[0]:
-#      clientId: txhl
-#      clientSecret: txhlSecret
-#      accessTokenValiditySeconds: 3600
+  clients:
+    clients:
+      clientId: txhl
+      clientSecret: txhlSecret
+      accessTokenValiditySeconds: 3600
 #    clients[1]:
 #      clientId: test
 com:

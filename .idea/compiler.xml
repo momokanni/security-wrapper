@@ -13,5 +13,9 @@
         <module name="core" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="appDemo" target="1.8" />
+      <module name="browserDemo" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -76,7 +76,7 @@ public class OwnAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
 			throw new UnapprovedClientAuthenticationException("请求头中无client信息");
 		}
 		
-		String[] tokens = extractAndDecodeHeader(header, request);
+		String[] tokens = extractAndDecodeHeader(header);
 		assert tokens.length == 2;
 		
 		String clientId = tokens[0];
@@ -93,22 +93,17 @@ public class OwnAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
 		
 		OAuth2Request oauth2Request = tokenRequest.createOAuth2Request(clientDetails);
 		
-		//包含哪一个第三方应用在请求哪个用户给你认证，认证模式又是什么，认证参数 
+		//包含能够确认三方客户端和用户、认证模式的请求参数
 		OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oauth2Request, authentication);
 		
 		OAuth2AccessToken accessToken = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
 		
-		//判断登录方式
-		if(LoginResponseType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
-			response.setContentType("apllication/json;charset=UTF-8");
-			response.getWriter().write(objMapper.writeValueAsString(accessToken));
-		}else {
-			super.onAuthenticationSuccess(request, response, authentication);
-		}
+		response.setContentType("apllication/json;charset=UTF-8");
+		response.getWriter().write(objMapper.writeValueAsString(accessToken));
 	}
 	
 	
-	private String[] extractAndDecodeHeader(String header,HttpServletRequest request) throws IOException {
+	private String[] extractAndDecodeHeader(String header) throws IOException {
 		
 		// POST请求 Authorization：Basic aW1vb2M6aW1vb2NTZWNyZXQ=
 		byte[] base64Token = header.substring(6).getBytes();

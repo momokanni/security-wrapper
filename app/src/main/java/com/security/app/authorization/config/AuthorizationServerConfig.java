@@ -23,7 +23,7 @@ import com.security.core.properties.SecurityProperties;
 
 @Component
 /**
- * 开启认证服务器
+ * 开启认证服务
  */
 @EnableAuthorizationServer
 /**

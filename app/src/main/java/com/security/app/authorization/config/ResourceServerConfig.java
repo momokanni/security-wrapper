@@ -15,37 +15,39 @@ import com.security.core.properties.SecurityConstants;
 import com.security.core.properties.SecurityProperties;
 import com.security.core.validator.config.ValidateCodeConfig;
 
-/**
- * @Description 
- * @author sca
- * @Date 2019-08-03 17:54
- **/
+import javax.annotation.Resource;
+
 @Configuration
 /**
   * 开启资源服务器
   */
 @EnableResourceServer
+/**
+ * @Description
+ * @author sca
+ * @Date 2019-08-03 17:54
+ **/
 public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 	
 	@Autowired
 	private SecurityProperties securityPro;
 	
-	@Autowired
+	@Resource
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
 	
-	@Autowired
+	@Resource
 	private AuthenticationFailureHandler authenticationFailureHandler;
 	
-	@Autowired
+	@Resource
 	private SmsCodeAuthenticationConfig smsAuthConfig;
 	
-	@Autowired
+	@Resource
 	private OpenIdAuthenticationSecurityConfig openIdSecurityConfig;
 	
 	@Autowired
 	private SpringSocialConfigurer socialSecurityConfig;
 	
-	@Autowired
+	@Resource
 	private ValidateCodeConfig validateCodeSecurityConfig;
 	
 	@Override
@@ -74,7 +76,7 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 					securityPro.getBrowser().getSignUp(),
 					securityPro.getBrowser().getLoginOutUrl(),
 					securityPro.getBrowser().getSession().getSessionInvalidUrl(),
-					"/user/regist")
+					"/user/register")
 				.permitAll()
 			.anyRequest()
 			.authenticated()

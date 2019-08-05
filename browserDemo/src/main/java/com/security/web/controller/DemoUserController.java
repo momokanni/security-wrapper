@@ -127,8 +127,8 @@ public class DemoUserController {
         log.info("删除用户: {}" , id);
     }
 
-    @PostMapping(value = "/regist")
-    public void regist(DemoUser user, HttpServletRequest request) {
+    @PostMapping(value = "/register")
+    public void register(DemoUser user, HttpServletRequest request) {
         //不管注册还是绑定，都会拿到用户的唯一标识
         String userId = user.getUsername();
         // 将userId 和 session中的Social信息 绑定并插入到数据库DB

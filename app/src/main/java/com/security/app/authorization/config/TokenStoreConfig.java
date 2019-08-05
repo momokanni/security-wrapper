@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import com.security.app.jwt.LocalJwtTokenEnhancer;
 import com.security.core.properties.SecurityProperties;
 
+import javax.annotation.Resource;
+
 /**
  * @author sca
  * 令牌存储
@@ -22,7 +24,7 @@ import com.security.core.properties.SecurityProperties;
 @Configuration
 public class TokenStoreConfig {
 	
-	@Autowired
+	@Resource
 	private RedisConnectionFactory redisConnectionFactory;
 	
 	@Bean

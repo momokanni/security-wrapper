@@ -153,7 +153,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 						securityPro.getBrowser().getSignUp(),
 						securityPro.getBrowser().getLoginOutUrl(),
 						securityPro.getBrowser().getSession().getSessionInvalidUrl(),
-						"/user/regist")
+						"/user/register")
 					.permitAll()
 				//.antMatchers(HttpMethod.GET,"/user/*").hasRole("ADMIN")
 				.antMatchers(HttpMethod.GET,"/user/*").access("hasRole('ADMIN') and hasIpAdress('192.168.0.1/24')")
