@@ -74,7 +74,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
 	@Bean
 	public SpringSocialConfigurer socialSecurityConfig() {
 		String filterProcessUrl = securityProperties.getSocial().getFilterProcessUrl();
-		LocalSpringSocialConfigure lssc = new LocalSpringSocialConfigure(filterProcessUrl);
+		LocalSpringSocialConfigure localSpringSocialConfigure = new LocalSpringSocialConfigure(filterProcessUrl);
 		/**
 		 * 修改默认注册页
 		 * SocialAuthticationFilter捕获SocialAuthenticationProvider在获取不到系统userId时抛出的BadCredentialsException异常，
@@ -84,9 +84,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
 		 * SocialAuthticationFilter attemptAuthentication();
 		 * 		
 		 */
-		lssc.signupUrl(securityProperties.getBrowser().getSignUp());
-		lssc.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
-		return lssc;
+		localSpringSocialConfigure.signupUrl(securityProperties.getBrowser().getSignUp());
+		localSpringSocialConfigure.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
+		return localSpringSocialConfigure;
 	}
 	
 	/**

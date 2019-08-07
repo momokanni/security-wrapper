@@ -11,9 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @SpringBootApplication
 @MapperScan(basePackages = "com.security.web.mapper")
-public class BrowserDemoApplication {
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BrowserDemoApplication.class , args);
+        SpringApplication.run(DemoApplication.class , args);
     }
 }

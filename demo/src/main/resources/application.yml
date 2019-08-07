@@ -8,7 +8,7 @@ spring:
     show-sql: true
     open-in-view: true
   session:
-    store-type: redis
+    store-type: none
   resources:
     static-locations: classpath:/resources/static,classpath:/resources
   redis:
@@ -50,10 +50,9 @@ com:
       qq:
         app-id: 101477439
         app-secret: 1c9274f4c91af237a4055680a931cd71
-        providerId: callback
+        providerId: qq
       weixin:
         app-id: wxd888ff7ebaff0fdb
         app-secret: 771c5f039f324f38a1f18dcb744db897
         providerId: weixin
-      filterProcessUrl: /qqLogin
-#      clientSecret: testOne
+      filterProcessUrl: /socialLogin

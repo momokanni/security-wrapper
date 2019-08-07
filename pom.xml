@@ -19,7 +19,6 @@
         <module>browser</module>
         <module>app</module>
         <module>demo</module>
-        <module>appDemo</module>
     </modules>
 
 
