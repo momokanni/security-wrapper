@@ -58,9 +58,9 @@ public class WeiXinAutoConfiguration extends SocialConfigurerAdapter {
 	}
 
 	
-	@Bean({"connect/weiXinConnect","connect/weiXinConnected"})
-	@ConditionalOnMissingBean(name = "weiXinConnectedView")
-	public View weiXinConnectedView() {
+	@Bean({"connect/weixinConnect","connect/weixinConnected"})
+	@ConditionalOnMissingBean(name = "weixinConnectedView")
+	public View weixinConnectedView() {
 		
 		return new ConnectResultView();
 	}

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * @author sca
  * 绑定状态视图，查询已绑定和未绑定的三方都有哪些
  */
-@Component("connect/status")
+@Component("conncet/status")
 public class ConnectStatusView extends AbstractView {
 
 	@Autowired

@@ -9,12 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="app" />
         <module name="browser" />
+        <module name="browserDemo" />
         <module name="core" />
-        <module name="demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="appDemo" target="1.8" />
+      <module name="browserDemo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
