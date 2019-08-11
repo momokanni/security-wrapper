@@ -8,14 +8,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.social.security.SpringSocialConfigurer;
-
 import com.security.app.authentication.openid.OpenIdAuthenticationSecurityConfig;
 import com.security.core.authencation.sms.SmsCodeAuthenticationConfig;
 import com.security.core.properties.SecurityConstants;
 import com.security.core.properties.SecurityProperties;
 import com.security.core.validator.config.ValidateCodeConfig;
-
-import javax.annotation.Resource;
 
 @Configuration
 /**
@@ -32,22 +29,22 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 	@Autowired
 	private SecurityProperties securityPro;
 	
-	@Resource
+	@Autowired
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
 	
-	@Resource
+	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
 	
-	@Resource
+	@Autowired
 	private SmsCodeAuthenticationConfig smsAuthConfig;
 	
-	@Resource
+	@Autowired
 	private OpenIdAuthenticationSecurityConfig openIdSecurityConfig;
 	
 	@Autowired
 	private SpringSocialConfigurer socialSecurityConfig;
 	
-	@Resource
+	@Autowired
 	private ValidateCodeConfig validateCodeSecurityConfig;
 	
 	@Override

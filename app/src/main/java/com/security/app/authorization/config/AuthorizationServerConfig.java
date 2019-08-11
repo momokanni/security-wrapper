@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -33,7 +34,6 @@ import com.security.core.properties.SecurityProperties;
  **/
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
 	
-	@Autowired
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
@@ -50,12 +50,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Autowired
 	private SecurityProperties securityProperties;
-	
+
+	public AuthorizationServerConfig(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+		this.authenticationManager = authenticationConfiguration.getAuthenticationManager();
+	}
+
 	/**
 	 * 配置入口,将自定义的配置类注入到授权流程中去
 	 */
 	@Override
-	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 
 		endpoints.tokenStore(tokenStore)
 				 .authenticationManager(authenticationManager)
