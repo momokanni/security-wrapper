@@ -1,21 +1,15 @@
 package com.security.app.authorization.config;
 
+import com.security.core.store.CoreRedisTokenStore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-
-import com.security.app.jwt.LocalJwtTokenEnhancer;
 import com.security.core.properties.SecurityProperties;
-
-import javax.annotation.Resource;
 
 /**
  * @author sca
@@ -24,14 +18,14 @@ import javax.annotation.Resource;
 @Configuration
 public class TokenStoreConfig {
 	
-	@Resource
+	@Autowired
 	private RedisConnectionFactory redisConnectionFactory;
 	
 	@Bean
-	@ConditionalOnProperty(prefix = "security.oauth", name = "tokenStore", havingValue = "redis")
+	@ConditionalOnProperty(prefix = "com.security.oauth", name = "storeType", havingValue = "redis")
 	public TokenStore redisTokenStore() {
-		
-		return new RedisTokenStore(redisConnectionFactory);
+
+		return new CoreRedisTokenStore(redisConnectionFactory);
 	}
 	
 	/**
@@ -43,7 +37,7 @@ public class TokenStoreConfig {
 	 * 当demo配置文件里配置项为：security.oauth.storeType = jwt,则该内部静态类配置生效
 	 * matchIfMissing = true:未配置也正常生效
  	 */
-	@ConditionalOnProperty(prefix = "security.oauth", name = "storeType", havingValue = "jwt", matchIfMissing = false)
+	@ConditionalOnProperty(prefix = "com.security.oauth", name = "storeType", havingValue = "jwt", matchIfMissing = true)
 	public static class JwtTokenConfig{
 		
 		@Autowired
@@ -69,17 +63,6 @@ public class TokenStoreConfig {
 			JwtAccessTokenConverter accessTokenConvert = new JwtAccessTokenConverter();
 			accessTokenConvert.setSigningKey(securityProperties.getOauth().getJwtSigningKey());
 			return accessTokenConvert;
-		}
-		
-		/**
-		 * Token增强器，定义token生成内容
-		 * @return
-		 */
-		@Bean
-		@ConditionalOnMissingBean(name = "jwtTokenEnhancer")
-		public TokenEnhancer tokenEnhancer() {
-			 
-			return new LocalJwtTokenEnhancer();
 		}
 	}
 }

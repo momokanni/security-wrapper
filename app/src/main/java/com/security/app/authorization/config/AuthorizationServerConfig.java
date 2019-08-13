@@ -2,12 +2,12 @@ package com.security.app.authorization.config;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.ArrayUtils;
+import com.security.app.jwt.LocalJwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -33,7 +33,10 @@ import com.security.core.properties.SecurityProperties;
  * @Date 2019-08-03 18:23
  **/
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
-	
+
+	/**
+	 * 构造函数注入
+	 */
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
@@ -46,17 +49,27 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private JwtAccessTokenConverter jwtTokenConverter;
 	
 	@Autowired(required = false)
-	private TokenEnhancer jwtTokenEnhancer;
+	private LocalJwtTokenEnhancer tokenEnhancer;
 	
 	@Autowired
 	private SecurityProperties securityProperties;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	/**
+	 * 注入AuthenticationManager
+	 * @param authenticationConfiguration
+	 * @throws Exception
+	 */
 	public AuthorizationServerConfig(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+
 		this.authenticationManager = authenticationConfiguration.getAuthenticationManager();
 	}
 
 	/**
-	 * 配置入口,将自定义的配置类注入到授权流程中去
+	 * 配置授权认证访问入口,将自定义的配置类注入到授权流程中去
+	 * TokenEndPoint
 	 */
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
@@ -64,7 +77,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		endpoints.tokenStore(tokenStore)
 				 .authenticationManager(authenticationManager)
 				 .userDetailsService(userDetailService);
-		if(jwtTokenConverter != null && jwtTokenEnhancer != null) {
+		if(jwtTokenConverter != null && tokenEnhancer != null) {
 			/**
 			 * endpoints.accessTokenConverter(jwtTokenConverter);
 			 * 增强器链
@@ -72,9 +85,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			 */
 			TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
 			List<TokenEnhancer> enhancers = new ArrayList<>();
-			enhancers.add(jwtTokenEnhancer);
+			enhancers.add(tokenEnhancer);
 			enhancers.add(jwtTokenConverter);
-			enhancers.add(enhancerChain);
+			enhancerChain.setTokenEnhancers(enhancers);
 			
 			endpoints.tokenEnhancer(enhancerChain)
 					 .accessTokenConverter(jwtTokenConverter);
@@ -89,10 +102,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		
 		InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-		if(ArrayUtils.isNotEmpty(securityProperties.getOauth().getClients())) {
+		List<OAuth2ClientProperties> clients2 = securityProperties.getOauth().getClients();
+		if(clients2.size() > 0) {
 			for (OAuth2ClientProperties client : securityProperties.getOauth().getClients()) {
 				builder.withClient(client.getClientId())
-					   .secret(client.getClientSecret())
+					   .secret(passwordEncoder.encode(client.getClientSecret()))
 					   .accessTokenValiditySeconds(client.getAccessTokenValiditySeconds())
 					   .authorizedGrantTypes("refresh_token","password")
 					   .scopes("all","read","write");

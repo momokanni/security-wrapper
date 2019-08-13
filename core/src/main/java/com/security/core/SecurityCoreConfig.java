@@ -3,10 +3,9 @@ package com.security.core;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.security.core.properties.SecurityProperties;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.security.core.properties.SecurityProperties;
 
 /**
  * 作用：使配置读取器生效
@@ -18,17 +17,17 @@ import com.security.core.properties.SecurityProperties;
 @Configuration
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SecurityCoreConfig {
-	
-	/**
-	 * 密码的加密解密
-	 * 1、用户登录，UserNamePasswordAuthenticationFilter获取到用户输入的密码，
-	 * 2、通过PasswordEncoder的matches方法同数据库加密保存的密码进行比对
-	 * 3、匹配成功matches()方法返回true
-	 * @return
-	 */
-	@Bean
-	public PasswordEncoder passwordEncoder() {
 
-		return new BCryptPasswordEncoder();
-	}
+    /**
+     * 密码的加密解密
+     * 1、用户登录，UserNamePasswordAuthenticationFilter获取到用户输入的密码，
+     * 2、通过PasswordEncoder的matches方法同数据库加密保存的密码进行比对
+     * 3、匹配成功matches()方法返回true
+     * @return
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+
+        return new BCryptPasswordEncoder();
+    }
 }

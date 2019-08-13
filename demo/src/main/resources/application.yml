@@ -9,6 +9,8 @@ spring:
     open-in-view: true
   session:
     store-type: redis
+    redis:
+      namespace: oauthToken
   resources:
     static-locations: classpath:/resources/static,classpath:/resources
   redis:
@@ -18,16 +20,7 @@ spring:
 
 server:
   port: 8060
-security:
-  oauth:
-    tokenStore: redis
-  clients:
-    clients:
-      clientId: txhl
-      clientSecret: txhlSecret
-      accessTokenValiditySeconds: 3600
-#    clients[1]:
-#      clientId: test
+
 com:
   security:
     browser:
@@ -56,4 +49,14 @@ com:
         app-secret: 771c5f039f324f38a1f18dcb744db897
         providerId: weixin
       filterProcessUrl: /qqLogin
-#      clientSecret: testOne
+    oauth:
+      clients[0]:
+        clientId: txhl
+        clientSecret: txhlSecret
+        accessTokenValiditySeconds: 3600
+      clients[1]:
+          clientId: test
+          clientSecret: testSecret
+          accessTokenValiditySeconds: 3600
+      tokenStore: redis
+      #storeType: jwt

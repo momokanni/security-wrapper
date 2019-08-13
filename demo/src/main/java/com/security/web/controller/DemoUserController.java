@@ -1,29 +1,34 @@
 package com.security.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.security.app.social.AppSignUpUtils;
 import com.security.core.properties.SecurityProperties;
 import com.security.exception.UserExpection;
 import com.security.web.dto.DemoUser;
 import com.security.web.dto.UserQueryCondition;
 import com.security.web.enums.ResultEnums;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +44,9 @@ public class DemoUserController {
 
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
+
+    @Autowired
+    private AppSignUpUtils appSignUpUtils;
 
     @Autowired
     private SecurityProperties securityProperties;
@@ -132,8 +140,9 @@ public class DemoUserController {
         //不管注册还是绑定，都会拿到用户的唯一标识
         String userId = user.getUsername();
         // 将userId 和 session中的Social信息 绑定并插入到数据库DB
-        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+        //providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
 
+        appSignUpUtils.doPostSignUp(new ServletWebRequest(request) , userId);
         //app 注册调用方法
         //appSignUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
     }
@@ -154,6 +163,22 @@ public class DemoUserController {
          *
          * 第三种： 只返回最终放入securityContext中的userDetails信息
          */
+        return user;
+    }
+
+    @ApiOperation(value="APP获取认证用户信息")
+    @GetMapping(value = "/appAuthUser")
+    public Object getAppAuthUser(Authentication user , HttpServletRequest request) throws UnsupportedEncodingException {
+        String header = request.getHeader("Authorization");
+        String token = StringUtils.substringAfter(header, "bearer ");
+        /**
+         * 将token通过jwt解析器解析成Claims对象
+         */
+        Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth().getJwtSigningKey().getBytes("UTF-8"))
+                .parseClaimsJws(token).getBody();
+
+        String companyName = (String) claims.get("company");
+        log.info("jwt自定义变量参数company: {}" , companyName);
         return user;
     }
 

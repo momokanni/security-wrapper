@@ -2,8 +2,9 @@
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-/**
+ /**
  * @Description  配置类
  * @Author sca
  * @Date 2019-08-03 17:55
