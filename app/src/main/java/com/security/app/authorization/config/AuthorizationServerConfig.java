@@ -3,6 +3,7 @@ package com.security.app.authorization.config;
 import java.util.ArrayList;
 import java.util.List;
 import com.security.app.jwt.LocalJwtTokenEnhancer;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -102,15 +103,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		
 		InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-		List<OAuth2ClientProperties> clients2 = securityProperties.getOauth().getClients();
-		if(clients2.size() > 0) {
-			for (OAuth2ClientProperties client : securityProperties.getOauth().getClients()) {
-				builder.withClient(client.getClientId())
-					   .secret(passwordEncoder.encode(client.getClientSecret()))
-					   .accessTokenValiditySeconds(client.getAccessTokenValiditySeconds())
-					   .authorizedGrantTypes("refresh_token","password")
-					   .scopes("all","read","write");
-			}
-		}
+        /**
+         * 获取客户端配置
+         */
+		List<OAuth2ClientProperties> clientCollection = securityProperties.getOauth().getClients();
+        if (CollectionUtils.isNotEmpty(clientCollection)) {
+            for (OAuth2ClientProperties client : securityProperties.getOauth().getClients()) {
+                builder.withClient(client.getClientId())
+                        .secret(passwordEncoder.encode(client.getClientSecret()))
+                        .accessTokenValiditySeconds(client.getAccessTokenValiditySeconds())
+                        .authorizedGrantTypes("refresh_token","password")
+                        .scopes("all","read","write");
+            }
+        }
 	}
 }
