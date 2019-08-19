@@ -2,6 +2,7 @@ package com.security.core.authorize;
 
 import com.security.core.properties.SecurityConstants;
 import com.security.core.properties.SecurityProperties;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
@@ -17,8 +18,9 @@ public class BaseAuthorizeConfigProvider implements AuthorizeConfigProvider {
 
     @Autowired
     private SecurityProperties securityProperties;
+
     @Override
-    public void config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
+    public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
         config.antMatchers(
                 SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
@@ -28,5 +30,10 @@ public class BaseAuthorizeConfigProvider implements AuthorizeConfigProvider {
                 securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
                 "/user/register")
             .permitAll();
+
+        if (StringUtils.isNotBlank(securityProperties.getBrowser().getLoginOutUrl())) {
+            config.antMatchers(securityProperties.getBrowser().getLoginOutUrl()).permitAll();
+        }
+        return false;
     }
 }

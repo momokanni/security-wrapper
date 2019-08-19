@@ -12,6 +12,7 @@
         <module name="browserDemo" />
         <module name="core" />
         <module name="demo" />
+        <module name="permission" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

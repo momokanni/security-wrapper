@@ -18,6 +18,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.91.security</groupId>
+            <artifactId>permission</artifactId>
+            <version>${module.security.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>

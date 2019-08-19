@@ -16,6 +16,7 @@ import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 表单用户信息获取 UserDetailsService
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
+@Transactional(rollbackFor = Exception.class)
 public class MyUserDetailsServiceImpl implements SuperUserDetailsService,SocialUserDetailsService {
 
 	@Autowired

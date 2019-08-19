@@ -10,5 +10,10 @@ import org.springframework.security.config.annotation.web.configurers.Expression
  **/
 public interface AuthorizeConfigProvider {
 
-    void config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config);
+    /**
+     * 授权配置提供者接口
+     * @param config
+     * @return
+     */
+    boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config);
 }
