@@ -2,6 +2,7 @@ package com.security.browser.config;
 
 import javax.sql.DataSource;
 
+import com.security.core.authorize.AuthorizeConfigManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 	
 	@Autowired
 	private LogoutSuccessHandler logoutSuccessHandler;
+
+	@Autowired
+	private AuthorizeConfigManager authorizeConfigManager;
 	
 	/**
 	 * 登录记住我功能 --> 
@@ -146,21 +150,22 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 				// 删除浏览器cookie
 				.deleteCookies("JSEESIONID") 
 			.and() 
-			.authorizeRequests() //下面两行都是授权配置
-				.antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-						SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-						securityPro.getBrowser().getLoginPage(),
-						securityPro.getBrowser().getSignUp(),
-						securityPro.getBrowser().getLoginOutUrl(),
-						securityPro.getBrowser().getSession().getSessionInvalidUrl(),
-						"/user/register")
-					.permitAll()
-				//.antMatchers(HttpMethod.GET,"/user/*").hasRole("ADMIN")
-				.antMatchers(HttpMethod.GET,"/user/*").access("hasRole('ADMIN') and hasIpAdress('192.168.0.1/24')")
-				.anyRequest() //任何请求
-				.authenticated()
-			.and()
+//			.authorizeRequests() //下面两行都是授权配置
+//				.antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+//						SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
+//						securityPro.getBrowser().getLoginPage(),
+//						securityPro.getBrowser().getSignUp(),
+//						securityPro.getBrowser().getLoginOutUrl(),
+//						securityPro.getBrowser().getSession().getSessionInvalidUrl(),
+//						"/user/register")
+//					.permitAll()
+//				//.antMatchers(HttpMethod.GET,"/user/*").hasRole("ADMIN")
+//				.antMatchers(HttpMethod.GET,"/user/*").access("hasRole('ADMIN') and hasIpAdress('192.168.0.1/24')")
+//				.anyRequest() //任何请求
+//				.authenticated()
+//			.and()
 			.csrf().disable();//禁用跨域请求，默认
+		authorizeConfigManager.config(http.authorizeRequests());
 	}
 
 	@Override

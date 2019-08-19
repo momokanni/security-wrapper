@@ -1,7 +1,6 @@
 package com.security.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.security.app.social.AppSignUpUtils;
 import com.security.core.properties.SecurityProperties;
 import com.security.exception.UserExpection;
 import com.security.web.dto.DemoUser;
@@ -45,8 +44,8 @@ public class DemoUserController {
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
-    @Autowired
-    private AppSignUpUtils appSignUpUtils;
+//    @Autowired
+//    private AppSignUpUtils appSignUpUtils;
 
     @Autowired
     private SecurityProperties securityProperties;
@@ -140,9 +139,9 @@ public class DemoUserController {
         //不管注册还是绑定，都会拿到用户的唯一标识
         String userId = user.getUsername();
         // 将userId 和 session中的Social信息 绑定并插入到数据库DB
-        //providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
 
-        appSignUpUtils.doPostSignUp(new ServletWebRequest(request) , userId);
+        //appSignUpUtils.doPostSignUp(new ServletWebRequest(request) , userId);
         //app 注册调用方法
         //appSignUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
     }

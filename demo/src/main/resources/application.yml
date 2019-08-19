@@ -8,9 +8,7 @@ spring:
     show-sql: true
     open-in-view: true
   session:
-    store-type: redis
-    redis:
-      namespace: oauthToken
+    store-type: none
   resources:
     static-locations: classpath:/resources/static,classpath:/resources
   redis:
@@ -59,4 +57,4 @@ com:
           clientSecret: testSecret
           accessTokenValiditySeconds: 3600
       tokenStore: redis
-      #storeType: jwt
+      storeType: jwt

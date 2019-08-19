@@ -1,5 +1,6 @@
 package com.security.app.authorization.config;
 
+import com.security.core.authorize.AuthorizeConfigManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -46,6 +47,9 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 	
 	@Autowired
 	private ValidateCodeConfig validateCodeSecurityConfig;
+
+	@Autowired
+	private AuthorizeConfigManager authorizeConfigManager;
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
@@ -66,18 +70,8 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 			.and()
 		.apply(openIdSecurityConfig)
 			.and()
-		.authorizeRequests()
-			.antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-					SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-					securityPro.getBrowser().getLoginPage(),
-					securityPro.getBrowser().getSignUp(),
-					securityPro.getBrowser().getLoginOutUrl(),
-					securityPro.getBrowser().getSession().getSessionInvalidUrl(),
-					"/user/register")
-				.permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
 		.csrf().disable();
+
+		authorizeConfigManager.config(http.authorizeRequests());
 	}
 }
