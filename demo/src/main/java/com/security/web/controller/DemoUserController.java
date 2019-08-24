@@ -2,7 +2,7 @@ package com.security.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.security.core.properties.SecurityProperties;
-import com.security.exception.UserExpection;
+import com.security.exception.UserException;
 import com.security.web.dto.DemoUser;
 import com.security.web.dto.UserQueryCondition;
 import com.security.web.enums.ResultEnums;
@@ -100,7 +100,7 @@ public class DemoUserController {
     public DemoUser createUser(@Valid @RequestBody DemoUser demoUser, BindingResult errors) {
         if(errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(error -> log.error("异常: {}" , error.getDefaultMessage()));
-            throw new UserExpection(ResultEnums.USER_CREATE_ERROR.getCode(),ResultEnums.USER_CREATE_ERROR.getMsg());
+            throw new UserException(ResultEnums.USER_CREATE_ERROR.getCode(),ResultEnums.USER_CREATE_ERROR.getMsg());
         }
         log.info("创建用户参数：用户ID={}, 用户名称={}, 用户密码={}, 用户生日={}", demoUser.getId(), demoUser.getUsername(), demoUser.getPwd(), demoUser.getBirthday());
         demoUser.setId(1);

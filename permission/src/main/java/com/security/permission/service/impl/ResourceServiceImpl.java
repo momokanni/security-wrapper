@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Description 
@@ -28,8 +29,8 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public ResourceInfo getTree(Long adminId) {
-		Admin admin = adminRepository.getOne(adminId);
-		return resourceRepository.findByName("根节点").toTree(admin);
+		Optional<Admin> admin = adminRepository.findById(adminId);
+		return resourceRepository.findByName("根节点").toTree(admin.get());
 	}
 
 	@Override

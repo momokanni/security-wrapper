@@ -11,18 +11,18 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
  * @Date 2019-08-03 17:58
  **/
 @Getter
-public class UserExpection extends AuthenticationException {
+public class UserException extends AuthenticationException {
 
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 	
 	private int code;
 
-	public UserExpection(ResultEnums resultEnums) {
+	public UserException(ResultEnums resultEnums) {
 		super(resultEnums.getMsg());
 		this.code = resultEnums.getCode();
 	}
 
-	public UserExpection(int code,String msg) {
+	public UserException(int code, String msg) {
 		super(msg);
 		this.code = code;
 	}

@@ -1,7 +1,7 @@
 package com.security.social;
 
 import com.security.core.service.SuperUserDetailsService;
-import com.security.exception.UserExpection;
+import com.security.exception.UserException;
 import com.security.web.dao.DemoUserDetailsDao;
 import com.security.web.entity.User;
 import com.security.web.enums.EnabledStatus;
@@ -76,7 +76,7 @@ public class MyUserDetailsServiceImpl implements SuperUserDetailsService,SocialU
 		//根据查找的用户信息判断用户是否被冻结，是否被锁定
 		User user = demoUserDetailsDao.loadUserDetailsById(username);
 		if (user == null){
-			throw new UserExpection(ResultEnums.USER_NOT_EXISTS.getCode(),ResultEnums.USER_NOT_EXISTS.getMsg());
+			throw new UserException(ResultEnums.USER_NOT_EXISTS.getCode(),ResultEnums.USER_NOT_EXISTS.getMsg());
 		} else {
 			boolean enabled = EnabledStatus.getValue(user.getEnabled());
 			boolean lock = LockStatus.getValue(user.getLockStatus());
@@ -89,7 +89,7 @@ public class MyUserDetailsServiceImpl implements SuperUserDetailsService,SocialU
 	public SocialUserDetails buildUserByMobile(String tel) throws UsernameNotFoundException {
 		User user = demoUserDetailsDao.loadUserDetailsByTel(tel);
 		if (user == null){
-			throw new UserExpection(ResultEnums.USER_NOT_EXISTS.getCode(),ResultEnums.USER_NOT_EXISTS.getMsg());
+			throw new UserException(ResultEnums.USER_NOT_EXISTS.getCode(),ResultEnums.USER_NOT_EXISTS.getMsg());
 		} else {
 			boolean enabled = EnabledStatus.getValue(user.getEnabled());
 			boolean lock = LockStatus.getValue(user.getLockStatus());

@@ -1,6 +1,6 @@
 package com.security.handle;
 
-import com.security.exception.UserExpection;
+import com.security.exception.UserException;
 import com.security.web.enums.ResultEnums;
 import com.security.web.util.ResultUtil;
 import com.security.web.vo.ResultVO;
@@ -24,9 +24,9 @@ public class ExceptionHandle {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public ResultVO handlerUserException(Exception e){
-		if (e instanceof UserExpection){
-			UserExpection userExpection = (UserExpection) e;
-			return ResultUtil.error(userExpection.getCode(),userExpection.getMessage());
+		if (e instanceof UserException){
+			UserException userException = (UserException) e;
+			return ResultUtil.error(userException.getCode(), userException.getMessage());
 		}
 		log.error("系统错误: {}" , e);
 		return ResultUtil.error(ResultEnums.SYSTEM_ERROR.getCode(),ResultEnums.SYSTEM_ERROR.getMsg());
