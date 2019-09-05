@@ -25,7 +25,7 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
 	/**
 	 * 只接受post请求
 	 */
-	private boolean postOlny = true;
+	private boolean postOnly = true;
 	
 	public SmsCodeAuthenticationFilter() {
 		
@@ -36,7 +36,7 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse rep) throws AuthenticationException, IOException, ServletException {
 
 		String requestType = "POST";
-		if(postOlny && !requestType.equals(req.getMethod())) {
+		if(postOnly && !requestType.equals(req.getMethod())) {
 			throw new AuthenticationServiceException("Authentication method not supported: " + req.getMethod());
 		}
 		
@@ -75,8 +75,8 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
 	}
 
 
-	public void setPostOlny(boolean postOlny) {
-		this.postOlny = postOlny;
+	public void setPostOnly(boolean postOnly) {
+		this.postOnly = postOnly;
 	}
 
 	public void setTel(String usernameParameter) {

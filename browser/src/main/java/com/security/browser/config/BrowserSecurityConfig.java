@@ -148,7 +148,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig{
 				.logoutUrl("/loginOut") 
 				.logoutSuccessHandler(logoutSuccessHandler)
 				// 删除浏览器cookie
-				.deleteCookies("JSEESIONID") 
+				.deleteCookies("JSESSIONID")
 			.and() 
 //			.authorizeRequests() //下面两行都是授权配置
 //				.antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
