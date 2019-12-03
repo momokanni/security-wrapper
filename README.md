@@ -1,4 +1,4 @@
-## 因为本人失误，忘记了github的密码，所以更新不及时，近期会上传：单机双客户端(系统管理、商户管理)集成springSecurity的实际应用  
+## 因为本人失误，忘记了github的密码，所以更新不及时，近期会上传：单机双客户端(系统管理、商户管理)集成springSecurity的实际应用[已更新](https://github.com/momokanni/SpringSecurity_SpringMVC)  
 ## springMVC集成springSecurity的单机版权限管理系统已经开发完毕，9月5号之前会整理上传，其中涉及的知识点非常丰富，会进一步巩固对springSecurity的认知  
 ### 前情提要  
 在这首先感谢毅哥的支持，其中包括在架构和关键技术痛点的经验分享和提醒，弥补了我经验不足带来的缺失、以及给予充分自由的发挥空间。🥶🥶🥶🥶🥶#不是拍马屁#  
